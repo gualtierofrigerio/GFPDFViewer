@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GFPDFViewer_Example' do
+  pod 'GFPDFViewer', :path => '../'
+
+  target 'GFPDFViewer_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
