@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import GFPDFViewer
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var pdfView: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    @IBAction func loadButtonTap(_ sender: Any) {
+        guard let pdfPath = Bundle.main.path(forResource: "sample", ofType: "pdf", inDirectory: "pdfs") else {return}
+        let pdfViewer = GFPDFViewController()
+        pdfViewer.showPDF(atPath: pdfPath)
+        pdfView.addSubview(pdfViewer.view)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

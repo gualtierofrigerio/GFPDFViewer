@@ -1,0 +1,16 @@
+PODS:
+  - GFPDFViewer (0.1.0)
+
+DEPENDENCIES:
+  - GFPDFViewer (from `../`)
+
+EXTERNAL SOURCES:
+  GFPDFViewer:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GFPDFViewer: 097ac55fed428bce373df60489e1f925c8587307
+
+PODFILE CHECKSUM: 6221da72adfffc6a84e990da3246bb0816fbf9f4
+
+COCOAPODS: 1.5.3

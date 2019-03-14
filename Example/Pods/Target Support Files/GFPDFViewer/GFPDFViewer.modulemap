@@ -1,0 +1,6 @@
+framework module GFPDFViewer {
+  umbrella header "GFPDFViewer-umbrella.h"
+
+  export *
+  module * { export * }
+}

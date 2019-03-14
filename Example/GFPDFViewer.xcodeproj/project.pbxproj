@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2592A4AA223AA18000D851B9 /* pdfs in Resources */ = {isa = PBXBuildFile; fileRef = 2592A4A9223AA18000D851B9 /* pdfs */; };
 		3F90BB2DB0A07D3EE3F9DC88 /* Pods_GFPDFViewer_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F10D5057E7CCCE7D7CCF745 /* Pods_GFPDFViewer_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		176FF990E49E8429A6CD2BB1 /* Pods-GFPDFViewer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFPDFViewer_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GFPDFViewer_Example/Pods-GFPDFViewer_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		2592A4A9223AA18000D851B9 /* pdfs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pdfs; sourceTree = "<group>"; };
 		3BDE6B22FD89F44BBB19A26C /* Pods-GFPDFViewer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFPDFViewer_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GFPDFViewer_Tests/Pods-GFPDFViewer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		43D807712B423B4EB7847396 /* Pods-GFPDFViewer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFPDFViewer_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GFPDFViewer_Tests/Pods-GFPDFViewer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		474E974694B899D07C3D7B5D /* Pods_GFPDFViewer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFPDFViewer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,10 +45,10 @@
 		607FACE51AFB9204008FA782 /* GFPDFViewer_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GFPDFViewer_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		770CBCF5FAB1145A2408007F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		770CBCF5FAB1145A2408007F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9CAB11A275A329635D4873C2 /* Pods-GFPDFViewer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFPDFViewer_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GFPDFViewer_Example/Pods-GFPDFViewer_Example.release.xcconfig"; sourceTree = "<group>"; };
-		9CEADAEEA2EF0AC4343C1044 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		AEF656631A759F8A4FB6A856 /* GFPDFViewer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = GFPDFViewer.podspec; path = ../GFPDFViewer.podspec; sourceTree = "<group>"; };
+		9CEADAEEA2EF0AC4343C1044 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AEF656631A759F8A4FB6A856 /* GFPDFViewer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GFPDFViewer.podspec; path = ../GFPDFViewer.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				2592A4A9223AA18000D851B9 /* pdfs */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for GFPDFViewer */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				2592A4AA223AA18000D851B9 /* pdfs in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);

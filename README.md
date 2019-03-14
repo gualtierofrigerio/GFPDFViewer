@@ -20,9 +20,11 @@ it, simply add the following line to your Podfile:
 pod 'GFPDFViewer'
 ```
 
+Early version of the library not yet available through CocoaPods
+
 ## Author
 
-gualtierofrigerio, gualtiero.frigerio@epress.it
+Gualtiero Frigerio, gualtiero.frigerio@gmail.com
 
 ## License
 

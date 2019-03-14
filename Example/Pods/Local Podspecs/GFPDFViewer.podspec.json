@@ -1,0 +1,22 @@
+{
+  "name": "GFPDFViewer",
+  "version": "0.1.0",
+  "summary": "A short description of GFPDFViewer.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/gualtierofrigerio/GFPDFViewer",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "gualtierofrigerio": "gualtiero.frigerio@epress.it"
+  },
+  "source": {
+    "git": "https://github.com/gualtierofrigerio/GFPDFViewer.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "GFPDFViewer/Classes/**/*"
+}

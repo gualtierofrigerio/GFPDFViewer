@@ -6,3 +6,21 @@
 //
 
 import Foundation
+import CoreGraphics
+
+class GFPDFDocumentProvider {
+    private var document:CGPDFDocument?
+    
+    func getPage(atIndex index:Int) -> CGPDFPage? {
+        guard let document = document else {return nil}
+        return document.page(at:index)
+    }
+    
+    func loadDocument(atPath path:String) -> Bool  {
+        guard let url = CFURLCreateWithFileSystemPath(nil, path as CFString, .cfurlposixPathStyle, false) else {
+            return false
+        }
+        document = CGPDFDocument(url)
+        return true
+    }
+}
