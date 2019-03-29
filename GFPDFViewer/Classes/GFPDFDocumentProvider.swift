@@ -23,4 +23,11 @@ class GFPDFDocumentProvider {
         document = CGPDFDocument(url)
         return true
     }
+    
+    func numberOfPages() -> Int {
+        guard let document = document else {
+            return 0
+        }
+        return document.numberOfPages
+    }
 }

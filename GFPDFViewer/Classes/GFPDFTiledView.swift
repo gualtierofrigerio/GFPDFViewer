@@ -35,6 +35,12 @@ class GFPDFTiledView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func resize(toFrame frame:CGRect) {
+        currentFrame = frame
+        let tiledLayer = self.layer as! CATiledLayer
+        tiledLayer.setNeedsDisplay()
+    }
+    
     func setPage(_ page:CGPDFPage) {
         self.page = page
     }
@@ -74,8 +80,9 @@ class GFPDFTiledView: UIView {
 extension GFPDFTiledView {
     func getTranslationAndScale(forRect rect:CGRect, box:CGRect) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         let rectRatio = rect.size.width / rect.size.height
+        print("rectRatio = \(rectRatio)")
         let boxRatio = box.size.width / box.size.height;
-        let widthRatio = rect.size.width / box.size.width;
+        //let widthRatio = rect.size.width / box.size.width;
         let heightRatio = rect.size.height / box.size.height;
         
         var xScale:CGFloat = 1.0
@@ -98,7 +105,8 @@ extension GFPDFTiledView {
                 newSize.height = box.size.height * yScale;
                 newSize.width = newSize.height * boxRatio;
                 
-                xScale = widthRatio > 1 ? 1 : newSize.width / box.size.width;
+                //xScale = widthRatio > 1 ? 1 : newSize.width / box.size.width;
+                xScale = newSize.width / box.size.width
                 
                 xTranslate = (rect.size.width - newSize.width) / 2;
             }

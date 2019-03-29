@@ -48,7 +48,7 @@
 		770CBCF5FAB1145A2408007F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9CAB11A275A329635D4873C2 /* Pods-GFPDFViewer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFPDFViewer_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GFPDFViewer_Example/Pods-GFPDFViewer_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9CEADAEEA2EF0AC4343C1044 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		AEF656631A759F8A4FB6A856 /* GFPDFViewer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GFPDFViewer.podspec; path = ../GFPDFViewer.podspec; sourceTree = "<group>"; };
+		AEF656631A759F8A4FB6A856 /* GFPDFViewer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GFPDFViewer.podspec; path = ../GFPDFViewer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,6 +473,7 @@
 			baseConfigurationReference = 176FF990E49E8429A6CD2BB1 /* Pods-GFPDFViewer_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = GFPDFViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;

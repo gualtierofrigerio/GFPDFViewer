@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         guard let pdfPath = Bundle.main.path(forResource: "sample", ofType: "pdf", inDirectory: "pdfs") else {return}
         let pdfViewer = GFPDFViewController()
         pdfViewer.showPDF(atPath: pdfPath)
+        self.addChildViewController(pdfViewer)
         pdfView.addSubview(pdfViewer.view)
     }
     

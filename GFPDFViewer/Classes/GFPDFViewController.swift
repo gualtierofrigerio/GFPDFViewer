@@ -9,15 +9,22 @@ import UIKit
 
 public class GFPDFViewController: UIViewController {
 
-    var provider = GFPDFDocumentProvider()
+    var configuration = GFPDFConfiguration()
     private var containerFrame:CGRect {
         return CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height)
     }
+    private var provider = GFPDFDocumentProvider()
+    private var pdfScrollViewController:GFPDFScrollViewController?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if self.view.subviews.count == 0 {
+            return
+        }
     }
     
     public func showPDF(atPath path:String) {
@@ -25,27 +32,43 @@ public class GFPDFViewController: UIViewController {
             print("coulnd't load document at path \(path)")
             return
         }
-        gotoPage(atIndex: 1) // pages start from 1
-    }
-    
-    @discardableResult public func gotoPage(atIndex index:Int) -> Bool {
-        guard let view = getViewForPage(atIndex: index) else {
-            return false
-        }
-        self.view.addSubview(view)
-        return true
+        configureScrollViewController()
+        pdfScrollViewController?.loadNewDocument()
+        pdfScrollViewController?.gotoPage(1) // pages start from 1
     }
 }
 
 // MARK: - Private
 
 extension GFPDFViewController {
-    private func getViewForPage(atIndex index:Int) -> GFPDFTiledView? {
+    private func configureScrollViewController() {
+        if pdfScrollViewController == nil {
+            pdfScrollViewController = GFPDFScrollViewController(configuration: configuration, dataSource: self, delegate: self)
+            addChildViewController(pdfScrollViewController!)
+            self.view.addSubview(pdfScrollViewController!.view)
+        }
+    }
+}
+
+// MARK: - GFPDFScrollView
+
+extension GFPDFViewController : GFPDFScrollViewDataSource {
+    func numberOfPages() -> Int {
+        return provider.numberOfPages()
+    }
+    
+    func viewForPage(atIndex index: Int) -> GFPDFTiledView? {
         guard let page = provider.getPage(atIndex: index) else {
             return nil
         }
         let tiledView = GFPDFTiledView(withFrame: containerFrame, scale: 1.0)
         tiledView.setPage(page)
         return tiledView
+    }
+}
+
+extension GFPDFViewController : GFPDFScrollViewDelegate {
+    func userScrolledToPage(_ page: Int) {
+        print("scrolled to page \(page)")
     }
 }
