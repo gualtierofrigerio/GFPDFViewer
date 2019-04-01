@@ -73,8 +73,16 @@ extension GFPDFScrollViewController {
         scrollView.isPagingEnabled = true
     }
     
+    private func frameOriginForPage(atIndex page:Int) -> CGFloat {
+        let origin = CGFloat(page - 1) * scrollView.frame.size.width
+        return origin
+    }
+    
     private func loadPage(_ page:Int) {
         guard let pdfView = dataSource.viewForPage(atIndex: page) else {return}
+        var frame = pdfView.frame
+        frame.origin.x = frameOriginForPage(atIndex: page)
+        pdfView.frame = frame
         scrollView.addSubview(pdfView)
     }
     
