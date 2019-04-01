@@ -62,7 +62,7 @@ extension GFPDFViewController : GFPDFScrollViewDataSource {
             return nil
         }
         let tiledView = GFPDFTiledView(withFrame: containerFrame, scale: 1.0)
-        tiledView.setPage(page)
+        tiledView.setPage(page, atIndex:index)
         return tiledView
     }
 }

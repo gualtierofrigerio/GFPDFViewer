@@ -16,6 +16,8 @@ class GFPDFTiledView: UIView {
     private var scale:CGFloat = 1.0
     private var page:CGPDFPage?
     private var currentFrame:CGRect!
+    
+    var pageIndex = 0
 
     init(withFrame frame: CGRect, scale:CGFloat) {
         super.init(frame: frame)
@@ -36,13 +38,15 @@ class GFPDFTiledView: UIView {
     }
     
     func resize(toFrame frame:CGRect) {
+        self.frame = frame
         currentFrame = frame
         let tiledLayer = self.layer as! CATiledLayer
         tiledLayer.setNeedsDisplay()
     }
     
-    func setPage(_ page:CGPDFPage) {
+    func setPage(_ page:CGPDFPage, atIndex index:Int) {
         self.page = page
+        pageIndex = index
     }
     
     override func draw(_ layer: CALayer, in ctx: CGContext) {
@@ -80,7 +84,6 @@ class GFPDFTiledView: UIView {
 extension GFPDFTiledView {
     func getTranslationAndScale(forRect rect:CGRect, box:CGRect) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         let rectRatio = rect.size.width / rect.size.height
-        print("rectRatio = \(rectRatio)")
         let boxRatio = box.size.width / box.size.height;
         //let widthRatio = rect.size.width / box.size.width;
         let heightRatio = rect.size.height / box.size.height;
