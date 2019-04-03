@@ -10,14 +10,23 @@ import UIKit
 class GFPDFScrollViewController: UIViewController {
 
     private var configuration:GFPDFConfiguration!
-    private var currentPage = 0
+    private var currentScreen = 0
     private var dataSource:GFPDFScrollViewDataSource!
     private var delegate:GFPDFScrollViewDelegate?
-    private var numberOfPages = 0
-    private var pageWidth:CGFloat {
-        return scrollView.frame.size.width
+    private var internalView = UIView()
+    private var loadedPages = [PDFPage]()
+    private var pagesContainerSize:CGSize {
+        guard let scrollView = scrollView else {
+            return CGSize(width: 0, height: 0)
+        }
+        return scrollView.frame.size
     }
-    private var scrollView:UIScrollView!
+    private var pagesOnScreen = 1
+    private var scrollView:UIScrollView?
+    private var singlePageWidth:CGFloat {
+        return pagesContainerSize.width / CGFloat(pagesOnScreen)
+    }
+    private var totalNumberOfPages = 0
     private var userIsScrolling = false
     
     init(configuration:GFPDFConfiguration, dataSource:GFPDFScrollViewDataSource, delegate:GFPDFScrollViewDelegate?) {
@@ -34,25 +43,31 @@ class GFPDFScrollViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScrollView()
-        self.view.addSubview(scrollView)
+        self.view.addSubview(scrollView!)
+        scrollView!.addSubview(internalView)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("viewWillTransition")
-        scrollView.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        resizeTiledViews()
-        adjustContentSize(numberOfPages: numberOfPages)
-        adjustContentOffset(forPage: currentPage)
+        scrollView?.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        resizeViews()
     }
     
     func gotoPage(_ page:Int) {
         adjustContentOffset(forPage: page)
-        loadPage(page)
+        let pages = getIndexesForPages(startIndex: page)
+        loadPages(pages)
+        currentScreen = page
     }
     
     func loadNewDocument() {
         let pages = dataSource.numberOfPages()
         setNumberOfPages(pages: pages)
+    }
+    
+    func setNumberOfPagesOnScreen(_ pages:Int) {
+        refreshCurrentScreen(newNumberOfPages: pages)
+        pagesOnScreen = pages
+        resizeViews()
     }
 }
 
@@ -62,18 +77,20 @@ extension GFPDFScrollViewController {
     
     private func adjustContentOffset(forPage page:Int) {
         let base0Page = page - 1 // PDF pages start from 1
-        let offsetX = CGFloat(base0Page) * pageWidth
-        scrollView.contentOffset = CGPoint(x: offsetX, y: 0)
+        let offsetX = CGFloat(base0Page) * pagesContainerSize.width
+        scrollView?.contentOffset = CGPoint(x: offsetX, y: 0)
     }
     
     private func adjustContentSize(numberOfPages:Int) {
-        var size = scrollView.frame.size
-        size.width = size.width * CGFloat(numberOfPages)
+        guard let scrollView = scrollView else {return}
+        var size = pagesContainerSize
+        size.width = singlePageWidth * CGFloat(numberOfPages)
         scrollView.contentSize = size
+        internalView.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
     
     private func configureScrollView() {
-        scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.backgroundColor = configuration.backgroundColor
         scrollView.delegate = self
         scrollView.frame = view.frame
@@ -85,34 +102,78 @@ extension GFPDFScrollViewController {
         scrollView.isUserInteractionEnabled = true
         scrollView.isMultipleTouchEnabled = true
         scrollView.isPagingEnabled = true
+        self.scrollView = scrollView
     }
     
-    private func frameOriginForPage(atIndex page:Int) -> CGFloat {
-        let origin = CGFloat(page - 1) * scrollView.frame.size.width
-        return origin
+    private func frameForPage(atIndex page:Int) -> CGRect {
+        let origin = CGFloat(page - 1) * singlePageWidth
+        let frame = CGRect(x: origin, y: 0, width: singlePageWidth, height: pagesContainerSize.height)
+        return frame
+    }
+    
+    private func frameForSinglePage(atIndex page:Int) -> CGRect {
+        var frame = frameForPage(atIndex: page)
+        guard let scrollView = scrollView else {return frame}
+        frame.size.width = scrollView.frame.size.width
+        return frame
+    }
+    
+    private func getIndexesForPages(startIndex:Int) -> [Int] {
+        if pagesOnScreen == 1 {
+            return [startIndex]
+        }
+        else {
+            var pages = [Int]()
+            for i in 0..<pagesOnScreen {
+                if startIndex + i <= totalNumberOfPages {
+                    pages.append(startIndex + i)
+                }
+            }
+            return pages
+        }
     }
     
     private func loadPage(_ page:Int) {
-        guard let pdfView = dataSource.viewForPage(atIndex: page) else {return}
-        var frame = pdfView.frame
-        frame.origin.x = frameOriginForPage(atIndex: page)
-        pdfView.frame = frame
-        scrollView.addSubview(pdfView)
+        loadPages([page])
     }
     
-    private func resizeTiledViews() {
-        for view in scrollView.subviews {
-            if let tiledView = view as? GFPDFTiledView {
-                tiledView.resize(toFrame: scrollView.frame)
-                var frame = scrollView.frame
-                frame.origin.x = frameOriginForPage(atIndex: tiledView.pageIndex)
-                tiledView.frame = frame
+    private func loadPages(_ pages:[Int]) {
+        for page in pages {
+            if let pdfView = dataSource.viewForPage(atIndex: page) {
+                var frame:CGRect
+                if (pages.count == 1) {
+                    frame = frameForSinglePage(atIndex: page)
+                }
+                else {
+                    frame = frameForPage(atIndex: page)
+                }
+                pdfView.resize(toFrame: frame)
+                internalView.addSubview(pdfView)
+                loadedPages.append((page, pdfView))
             }
         }
     }
     
+    private func refreshCurrentScreen(newNumberOfPages:Int) {
+        let currentPage = (currentScreen * pagesOnScreen) - (pagesOnScreen - 1)
+        currentScreen = currentPage / newNumberOfPages
+    }
+    
+    private func resizeViews() {
+        resizeTiledViews()
+        adjustContentSize(numberOfPages: totalNumberOfPages)
+        adjustContentOffset(forPage: currentScreen)
+    }
+    
+    private func resizeTiledViews() {
+        for (page,view) in loadedPages {
+            let frame = frameForPage(atIndex: page)
+            view.resize(toFrame: frame)
+        }
+    }
+    
     private func setNumberOfPages(pages:Int) {
-        numberOfPages = pages
+        totalNumberOfPages = pages
         adjustContentSize(numberOfPages: pages)
     }
 }
@@ -130,18 +191,15 @@ extension GFPDFScrollViewController : UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let page = (Int)(scrollView.contentOffset.x / pageWidth) + 1
-        if page != currentPage && userIsScrolling {
-            currentPage = page
-            print("scrollViewDidScroll currentPage = \(currentPage)")
-            loadPage(page)
+        let screen = (Int)(scrollView.contentOffset.x / pagesContainerSize.width) + 1
+        if screen != currentScreen && userIsScrolling {
+            currentScreen = screen
+            let pages = getIndexesForPages(startIndex: currentScreen)
+            loadPages(pages)
         }
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        if scrollView.subviews.count > 0 {
-            return scrollView.subviews[0]
-        }
-        return nil
+        return internalView
     }
 }

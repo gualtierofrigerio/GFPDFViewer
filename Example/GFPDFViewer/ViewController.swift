@@ -21,9 +21,11 @@ class ViewController: UIViewController {
 
     @IBAction func loadButtonTap(_ sender: Any) {
         guard let pdfPath = Bundle.main.path(forResource: "sample", ofType: "pdf", inDirectory: "pdfs") else {return}
-        let pdfViewer = GFPDFViewController()
+        var configuration = GFPDFConfiguration()
+        configuration.sideBySideLandscape = true
+        let pdfViewer = GFPDFViewController(withConfiguration: configuration)
         pdfViewer.showPDF(atPath: pdfPath)
-        self.addChildViewController(pdfViewer)
+        self.addChild(pdfViewer)
         pdfView.addSubview(pdfViewer.view)
     }
     

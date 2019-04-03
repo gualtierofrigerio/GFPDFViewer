@@ -16,15 +16,23 @@ public class GFPDFViewController: UIViewController {
     private var provider = GFPDFDocumentProvider()
     private var pdfScrollViewController:GFPDFScrollViewController?
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    public init(withConfiguration:GFPDFConfiguration) {
+        super.init(nibName: nil, bundle: nil)
+        configuration = withConfiguration
     }
     
-    public override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        if self.view.subviews.count == 0 {
-            return
-        }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        setPagesPerScreen(forSize: self.view.frame.size)
+    }
+    
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        setPagesPerScreen(forSize: size)
     }
     
     public func showPDF(atPath path:String) {
@@ -44,8 +52,17 @@ extension GFPDFViewController {
     private func configureScrollViewController() {
         if pdfScrollViewController == nil {
             pdfScrollViewController = GFPDFScrollViewController(configuration: configuration, dataSource: self, delegate: self)
-            addChildViewController(pdfScrollViewController!)
+            addChild(pdfScrollViewController!)
             self.view.addSubview(pdfScrollViewController!.view)
+        }
+    }
+    
+    private func setPagesPerScreen(forSize size:CGSize) {
+        if size.width > size.height && configuration.sideBySideLandscape {
+            pdfScrollViewController?.setNumberOfPagesOnScreen(2)
+        }
+        else {
+            pdfScrollViewController?.setNumberOfPagesOnScreen(1)
         }
     }
 }
@@ -62,7 +79,7 @@ extension GFPDFViewController : GFPDFScrollViewDataSource {
             return nil
         }
         let tiledView = GFPDFTiledView(withFrame: containerFrame, scale: 1.0)
-        tiledView.setPage(page, atIndex:index)
+        tiledView.setPage(page)
         return tiledView
     }
 }

@@ -6,11 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
-struct GFPDFConfiguration {
-    var backgroundColor = UIColor.white // Scroll view background color
-    var sideBySideLandscape = false // Display two pages side-by-side in landscape
-    var fitPage = true // Fit the entire page on screen. Set false to scroll vertically and fill the page horizontally
+typealias PDFPage = (page: Int, view: GFPDFTiledView)
+
+public struct GFPDFConfiguration {
+    public var backgroundColor = UIColor.white // Scroll view background color
+    public var sideBySideLandscape = true // Display two pages side-by-side in landscape
+    public var fitPage = true // Fit the entire page on screen. Set false to scroll vertically and fill the page horizontally
+    
+    public init() {}
 }
 
 protocol GFPDFScrollViewDataSource {

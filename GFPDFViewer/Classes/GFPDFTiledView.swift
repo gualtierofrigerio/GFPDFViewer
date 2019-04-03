@@ -16,8 +16,6 @@ class GFPDFTiledView: UIView {
     private var scale:CGFloat = 1.0
     private var page:CGPDFPage?
     private var currentFrame:CGRect!
-    
-    var pageIndex = 0
 
     init(withFrame frame: CGRect, scale:CGFloat) {
         super.init(frame: frame)
@@ -39,14 +37,13 @@ class GFPDFTiledView: UIView {
     
     func resize(toFrame frame:CGRect) {
         self.frame = frame
-        currentFrame = frame
+        currentFrame = CGRect(x:0, y:0, width: frame.size.width, height:frame.size.height)
         let tiledLayer = self.layer as! CATiledLayer
         tiledLayer.setNeedsDisplay()
     }
     
-    func setPage(_ page:CGPDFPage, atIndex index:Int) {
+    func setPage(_ page:CGPDFPage) {
         self.page = page
-        pageIndex = index
     }
     
     override func draw(_ layer: CALayer, in ctx: CGContext) {

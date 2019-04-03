@@ -58,27 +58,27 @@
 		58FF00818E91E6F94F84A65AF701C832 /* Pods-GFPDFViewer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GFPDFViewer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		62B8BF2D5D12AD73A87B9E7AEE7FEC14 /* Pods-GFPDFViewer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GFPDFViewer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		6FAB0300403F9F0CD41E0E6F77B31AE6 /* GFPDFViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GFPDFViewer.framework; path = GFPDFViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FAB0300403F9F0CD41E0E6F77B31AE6 /* GFPDFViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GFPDFViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C7CCDD3685D810BCA4E298F773AA0A /* Pods-GFPDFViewer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GFPDFViewer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		74CF0EA9A70399C426E039DCC3252D23 /* Pods-GFPDFViewer_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GFPDFViewer_Tests-umbrella.h"; sourceTree = "<group>"; };
 		7626469791FEFB8DA7C62B318F7590E2 /* Pods-GFPDFViewer_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GFPDFViewer_Example-umbrella.h"; sourceTree = "<group>"; };
 		7CABA6E8FC3B7E688D663D5B8FF48404 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D6CA257AAB4A7F7B0F6C26310450F1E /* Pods-GFPDFViewer_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GFPDFViewer_Tests.modulemap"; sourceTree = "<group>"; };
 		8F4DC824C695C47C04E3E655DE43B71A /* GFPDFCommon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GFPDFCommon.swift; path = GFPDFViewer/Classes/GFPDFCommon.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		964723CAFA1C80374561E74EF3EF57BB /* GFPDFViewer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = GFPDFViewer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9B45C8F743D9335CE8A2193F06A111AC /* Pods_GFPDFViewer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GFPDFViewer_Example.framework; path = "Pods-GFPDFViewer_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		964723CAFA1C80374561E74EF3EF57BB /* GFPDFViewer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = GFPDFViewer.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9B45C8F743D9335CE8A2193F06A111AC /* Pods_GFPDFViewer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFPDFViewer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1889DF767485FB0F1CD79E262A670F /* Pods-GFPDFViewer_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GFPDFViewer_Example-dummy.m"; sourceTree = "<group>"; };
 		B2E72BD6C6E086BC0397ACF9FC47AA8F /* Pods-GFPDFViewer_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GFPDFViewer_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B7C7D9EA8DB30CDABD4B47C857BAA4C7 /* Pods-GFPDFViewer_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GFPDFViewer_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		BD1E1AD9AC3EA27638DD1EECAB4D4104 /* GFPDFViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GFPDFViewController.swift; path = GFPDFViewer/Classes/GFPDFViewController.swift; sourceTree = "<group>"; };
 		C3445D5EAD9CDEEA954D7E38A06EDC4E /* GFPDFDocumentProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GFPDFDocumentProvider.swift; path = GFPDFViewer/Classes/GFPDFDocumentProvider.swift; sourceTree = "<group>"; };
-		DCD67ECAFC01DAC57172EDF2ECE3B391 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		DCD67ECAFC01DAC57172EDF2ECE3B391 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E0F39AF75944B831A0520EBBCD67D1A1 /* Pods-GFPDFViewer_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GFPDFViewer_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		E350DA92A62903A833EF19B8C4AA8223 /* Pods-GFPDFViewer_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GFPDFViewer_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		EA6FC976A1EFD7E680081F4ACB6B9372 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		EA6FC976A1EFD7E680081F4ACB6B9372 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EC7C35CEC987195FD182C0C5D110E769 /* GFPDFScrollViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GFPDFScrollViewController.swift; path = GFPDFViewer/Classes/GFPDFScrollViewController.swift; sourceTree = "<group>"; };
-		EF3E4F63505C132D0BBCCB24B0A336DC /* Pods_GFPDFViewer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GFPDFViewer_Tests.framework; path = "Pods-GFPDFViewer_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF3E4F63505C132D0BBCCB24B0A336DC /* Pods_GFPDFViewer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFPDFViewer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5747CBF4A407813A909A5E791D5DBD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -330,6 +330,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					892B5547E41A07A85079D7280AA8AA40 = {
+						LastSwiftMigration = 1010;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -458,7 +463,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -714,7 +719,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
