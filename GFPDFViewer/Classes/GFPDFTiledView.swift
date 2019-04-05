@@ -62,10 +62,10 @@ class GFPDFTiledView: UIView {
         ctx.translateBy(x: xTranslate, y: yTranslate)
         ctx.scaleBy(x: xScaleA, y: yScaleA)
         ctx.saveGState()
+        print("translateby \(currentFrame.size.height / yScaleA)")
+        ctx.translateBy(x: 0.0, y: currentFrame.size.height)
         // Flip the context so that the PDF page is rendered right side up.
-        ctx.translateBy(x: 0.0, y: currentFrame.size.height / yScaleA)
         ctx.scaleBy(x: 1.0, y: -1.0)
-        //let transform = page.getDrawingTransform (.mediaBox, rect: self.bounds, rotate: 0, preserveAspectRatio: true)
         ctx.saveGState()
         // Scale the context so that the PDF page is rendered at the correct size for the zoom level.
         ctx.scaleBy(x: scale, y: scale)
@@ -90,9 +90,9 @@ extension GFPDFTiledView {
         var xTranslate:CGFloat = 0.0
         var yTranslate:CGFloat = 0.0
         
-        if (rectRatio > 1)
+        if (rectRatio > 1) // view is landscape
         {
-            if (boxRatio > 1)
+            if (boxRatio > 1) // pdf page is lanscape
             {
                 xScale = rect.size.width / box.size.width;
                 yScale = rect.size.height / box.size.height;
@@ -111,12 +111,24 @@ extension GFPDFTiledView {
                 xTranslate = (rect.size.width - newSize.width) / 2;
             }
         }
-        else
+        else // view is portrait
         {
-            if (boxRatio < 1)
+            if (boxRatio < 1) // pdf page is portrait
             {
-                xScale = rect.size.width / box.size.width;
-                yScale = rect.size.height / box.size.height;
+                xScale = rect.size.width > box.size.width ? 1 : rect.size.width / box.size.width;
+                var newSize = CGSize()
+                newSize.width = box.size.width * xScale
+                newSize.height = newSize.width / boxRatio
+                if newSize.height > rect.size.height {
+                    newSize.height = rect.size.height
+                    newSize.width = newSize.height * boxRatio
+                }
+                
+                xScale = newSize.width / box.size.width
+                yScale = newSize.height / box.size.height
+                
+                xTranslate = (rect.size.width - newSize.width) / 2
+                yTranslate = (rect.size.height - newSize.height) / 2
             }
             else
             {
