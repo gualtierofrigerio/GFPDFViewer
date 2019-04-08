@@ -82,7 +82,7 @@ extension GFPDFTiledView {
     func getTranslationAndScale(forRect rect:CGRect, box:CGRect) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         let rectRatio = rect.size.width / rect.size.height
         let boxRatio = box.size.width / box.size.height;
-        //let widthRatio = rect.size.width / box.size.width;
+        let widthRatio = rect.size.width / box.size.width;
         let heightRatio = rect.size.height / box.size.height;
         
         var xScale:CGFloat = 1.0
@@ -94,41 +94,42 @@ extension GFPDFTiledView {
         {
             if (boxRatio > 1)
             {
-                xScale = rect.size.width / box.size.width;
-                yScale = rect.size.height / box.size.height;
+                xScale = rect.size.width / box.size.width
+                yScale = rect.size.height / box.size.height
             }
             else
             {
-                yScale = rect.size.height / box.size.height;
+                yScale = rect.size.height / box.size.height
                 
                 var newSize = CGSize()
-                newSize.height = box.size.height * yScale;
-                newSize.width = newSize.height * boxRatio;
+                newSize.height = box.size.height * yScale
+                newSize.width = newSize.height * boxRatio
                 
                 //xScale = widthRatio > 1 ? 1 : newSize.width / box.size.width;
                 xScale = newSize.width / box.size.width
                 
-                xTranslate = (rect.size.width - newSize.width) / 2;
+                xTranslate = (rect.size.width - newSize.width) / 2
             }
         }
         else
         {
             if (boxRatio < 1)
             {
-                xScale = rect.size.width / box.size.width;
-                yScale = rect.size.height / box.size.height;
+                xScale = rect.size.width / box.size.width
+                yScale = rect.size.height / box.size.height
             }
             else
             {
-                xScale = rect.size.width / box.size.width;
+                xScale = widthRatio > 1 ? 1 : rect.size.width / box.size.width
                 
                 var newSize = CGSize()
-                newSize.width = box.size.width * xScale;
-                newSize.height = newSize.width / boxRatio;
+                newSize.width = box.size.width * xScale
+                newSize.height = newSize.width / boxRatio
                 
-                yScale = heightRatio > 1 ? 1 : newSize.height / box.size.height;
+                yScale = heightRatio > 1 ? 1 : newSize.height / box.size.height
                 
-                yTranslate = (rect.size.height - newSize.height) / 2;
+                xTranslate = (rect.size.width - newSize.width) / 2
+                //yTranslate = (rect.size.height - newSize.height) / 2
             }
         }
         

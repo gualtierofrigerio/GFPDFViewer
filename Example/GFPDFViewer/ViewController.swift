@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loadButtonTap(_ sender: Any) {
-        guard let pdfPath = Bundle.main.path(forResource: "sample", ofType: "pdf", inDirectory: "pdfs") else {return}
+        guard let pdfPath = Bundle.main.path(forResource: "test2", ofType: "pdf", inDirectory: "pdfs") else {return}
         var configuration = GFPDFConfiguration()
         configuration.sideBySideLandscape = true
         let pdfViewer = GFPDFViewController(withConfiguration: configuration)
