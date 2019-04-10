@@ -30,9 +30,10 @@ public class GFPDFViewController: UIViewController {
         setPagesPerScreen(forSize: self.view.frame.size)
     }
     
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        setPagesPerScreen(forSize: size)
+    public func resize(toFrame frame:CGRect) {
+        view.frame = frame
+        setPagesPerScreen(forSize: frame.size)
+        pdfScrollViewController?.resize(toFrame: frame)
     }
     
     public func showPDF(atPath path:String) {
@@ -41,6 +42,7 @@ public class GFPDFViewController: UIViewController {
             return
         }
         configureScrollViewController()
+        setPagesPerScreen(forSize: self.view.frame.size)
         pdfScrollViewController?.loadNewDocument()
         pdfScrollViewController?.gotoPage(1) // pages start from 1
     }
@@ -53,6 +55,7 @@ extension GFPDFViewController {
         if pdfScrollViewController == nil {
             pdfScrollViewController = GFPDFScrollViewController(configuration: configuration, dataSource: self, delegate: self)
             addChild(pdfScrollViewController!)
+            pdfScrollViewController!.view.frame = view.frame
             self.view.addSubview(pdfScrollViewController!.view)
         }
     }

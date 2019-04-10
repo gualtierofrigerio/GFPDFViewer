@@ -47,14 +47,14 @@ class GFPDFScrollViewController: UIViewController {
         scrollView!.addSubview(internalView)
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        scrollView?.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+    func resize(toFrame frame:CGRect) {
+        scrollView?.frame = frame
         resizeViews()
     }
     
     func gotoPage(_ page:Int) {
         adjustContentOffset(forPage: page)
-        let pages = getIndexesForPages(startIndex: page)
+        let pages = getIndexesForPages(startScreen: page)
         loadPages(pages)
         currentScreen = page
     }
@@ -118,19 +118,15 @@ extension GFPDFScrollViewController {
         return frame
     }
     
-    private func getIndexesForPages(startIndex:Int) -> [Int] {
-        if pagesOnScreen == 1 {
-            return [startIndex]
-        }
-        else {
-            var pages = [Int]()
-            for i in 0..<pagesOnScreen {
-                if startIndex + i <= totalNumberOfPages {
-                    pages.append(startIndex + i)
-                }
+    private func getIndexesForPages(startScreen:Int) -> [Int] {
+        let startPageIndex = pageIndexForScreen(startScreen)
+        var pages = [Int]()
+        for i in 0..<pagesOnScreen {
+            if startPageIndex + i <= totalNumberOfPages {
+                pages.append(startPageIndex + i)
             }
-            return pages
         }
+        return pages
     }
     
     private func loadPage(_ page:Int) {
@@ -138,6 +134,7 @@ extension GFPDFScrollViewController {
     }
     
     private func loadPages(_ pages:[Int]) {
+        removeLoadedPages()
         for page in pages {
             if let pdfView = dataSource.viewForPage(atIndex: page) {
                 var frame:CGRect
@@ -154,9 +151,20 @@ extension GFPDFScrollViewController {
         }
     }
     
+    private func pageIndexForScreen(_ screen:Int) -> Int {
+        return (screen * pagesOnScreen) - (pagesOnScreen - 1)
+    }
+    
     private func refreshCurrentScreen(newNumberOfPages:Int) {
         let currentPage = (currentScreen * pagesOnScreen) - (pagesOnScreen - 1)
-        currentScreen = currentPage / newNumberOfPages
+        currentScreen = currentPage / newNumberOfPages + (currentPage % newNumberOfPages)
+    }
+    
+    private func removeLoadedPages() {
+        for pdfPage in loadedPages {
+            pdfPage.view.removeFromSuperview()
+        }
+        loadedPages.removeAll()
     }
     
     private func resizeViews() {
@@ -194,7 +202,7 @@ extension GFPDFScrollViewController : UIScrollViewDelegate {
         let screen = (Int)(scrollView.contentOffset.x / pagesContainerSize.width) + 1
         if screen != currentScreen && userIsScrolling {
             currentScreen = screen
-            let pages = getIndexesForPages(startIndex: currentScreen)
+            let pages = getIndexesForPages(startScreen: currentScreen)
             loadPages(pages)
         }
     }

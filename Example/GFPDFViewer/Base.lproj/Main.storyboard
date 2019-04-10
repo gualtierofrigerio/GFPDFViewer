@@ -29,16 +29,16 @@
                                     <action selector="loadButtonTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RiI-Bd-ffd"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTx-GT-bsW">
-                                <rect key="frame" x="22" y="86" width="337" height="561"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRw-Xu-AXr">
+                                <rect key="frame" x="22" y="66" width="337" height="581"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="pdfView" destination="GTx-GT-bsW" id="LIX-zZ-2mo"/>
+                        <outlet property="pdfView" destination="gRw-Xu-AXr" id="r6y-1e-Sje"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
