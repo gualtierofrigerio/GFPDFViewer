@@ -14,6 +14,7 @@ public struct GFPDFConfiguration {
     public var backgroundColor = UIColor.white // Scroll view background color
     public var sideBySideLandscape = true // Display two pages side-by-side in landscape
     public var fitPage = true // Fit the entire page on screen. Set false to scroll vertically and fill the page horizontally
+    public var usePDFKit = true
     
     public init() {}
 }

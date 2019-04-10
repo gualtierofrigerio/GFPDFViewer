@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import PDFKit
 
 class GFPDFDocumentProvider {
     private var document:CGPDFDocument?
@@ -14,6 +15,12 @@ class GFPDFDocumentProvider {
     func getPage(atIndex index:Int) -> CGPDFPage? {
         guard let document = document else {return nil}
         return document.page(at:index)
+    }
+    
+    @available(iOS 11.0, *)
+    func getPDFDocument(atPath path:String) -> PDFDocument? {
+        let url = URL(fileURLWithPath: path)
+        return PDFDocument(url: url)
     }
     
     func loadDocument(atPath path:String) -> Bool  {
