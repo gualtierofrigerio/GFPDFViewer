@@ -7,6 +7,15 @@
 
 import UIKit
 
+protocol GFPDFScrollViewDataSource {
+    func numberOfPages() -> Int
+    func viewForPage(atIndex index:Int) -> GFPDFTiledView?
+}
+
+protocol GFPDFScrollViewDelegate {
+    func userScrolledToPage(_ page:Int)
+}
+
 class GFPDFScrollViewController: UIViewController {
 
     private var configuration:GFPDFConfiguration!
@@ -21,6 +30,7 @@ class GFPDFScrollViewController: UIViewController {
         }
         return scrollView.frame.size
     }
+    private var pageHelper = GFPDFScrollViewPageHelper()
     private var pagesOnScreen = 1
     private var scrollView:UIScrollView?
     private var singlePageWidth:CGFloat {
@@ -54,7 +64,7 @@ class GFPDFScrollViewController: UIViewController {
     
     func gotoPage(_ page:Int) {
         adjustContentOffset(forPage: page)
-        let pages = getIndexesForPages(startScreen: page)
+        let pages = pageHelper.getIndexesOfPages(onScreen: page)
         loadPages(pages)
         currentScreen = page
     }
@@ -65,8 +75,11 @@ class GFPDFScrollViewController: UIViewController {
     }
     
     func setNumberOfPagesOnScreen(_ pages:Int) {
-        refreshCurrentScreen(newNumberOfPages: pages)
+        let currentPage = pageHelper.firstPageIndexOnScreen(currentScreen)
+        pageHelper.setNumberOfPagesOnScreen(pages)
+        let screen = pageHelper.screenForPage(currentPage)
         pagesOnScreen = pages
+        gotoPage(screen)
         resizeViews()
     }
 }
@@ -118,17 +131,6 @@ extension GFPDFScrollViewController {
         return frame
     }
     
-    private func getIndexesForPages(startScreen:Int) -> [Int] {
-        let startPageIndex = pageIndexForScreen(startScreen)
-        var pages = [Int]()
-        for i in 0..<pagesOnScreen {
-            if startPageIndex + i <= totalNumberOfPages {
-                pages.append(startPageIndex + i)
-            }
-        }
-        return pages
-    }
-    
     private func loadPage(_ page:Int) {
         loadPages([page])
     }
@@ -149,15 +151,6 @@ extension GFPDFScrollViewController {
                 loadedPages.append((page, pdfView))
             }
         }
-    }
-    
-    private func pageIndexForScreen(_ screen:Int) -> Int {
-        return (screen * pagesOnScreen) - (pagesOnScreen - 1)
-    }
-    
-    private func refreshCurrentScreen(newNumberOfPages:Int) {
-        let currentPage = (currentScreen * pagesOnScreen) - (pagesOnScreen - 1)
-        currentScreen = currentPage / newNumberOfPages + (currentPage % newNumberOfPages)
     }
     
     private func removeLoadedPages() {
@@ -183,6 +176,7 @@ extension GFPDFScrollViewController {
     private func setNumberOfPages(pages:Int) {
         totalNumberOfPages = pages
         adjustContentSize(numberOfPages: pages)
+        pageHelper.setTotalNumberOfPages(pages)
     }
 }
 
@@ -202,7 +196,7 @@ extension GFPDFScrollViewController : UIScrollViewDelegate {
         let screen = (Int)(scrollView.contentOffset.x / pagesContainerSize.width) + 1
         if screen != currentScreen && userIsScrolling {
             currentScreen = screen
-            let pages = getIndexesForPages(startScreen: currentScreen)
+            let pages = pageHelper.getIndexesOfPages(onScreen: currentScreen)
             loadPages(pages)
         }
     }

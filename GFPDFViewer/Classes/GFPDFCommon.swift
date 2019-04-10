@@ -17,13 +17,3 @@ public struct GFPDFConfiguration {
     
     public init() {}
 }
-
-protocol GFPDFScrollViewDataSource {
-    func numberOfPages() -> Int
-    func viewForPage(atIndex index:Int) -> GFPDFTiledView?
-}
-
-protocol GFPDFScrollViewDelegate {
-    func userScrolledToPage(_ page:Int)
-}
-
