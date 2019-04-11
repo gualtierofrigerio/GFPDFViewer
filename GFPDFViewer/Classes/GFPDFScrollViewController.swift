@@ -57,11 +57,6 @@ class GFPDFScrollViewController: UIViewController {
         scrollView!.addSubview(internalView)
     }
     
-    func resize(toFrame frame:CGRect) {
-        scrollView?.frame = frame
-        resizeViews()
-    }
-    
     func gotoPage(_ page:Int) {
         adjustContentOffset(forPage: page)
         let pages = pageHelper.getIndexesOfPages(onScreen: page)
@@ -72,6 +67,15 @@ class GFPDFScrollViewController: UIViewController {
     func loadNewDocument() {
         let pages = dataSource.numberOfPages()
         setNumberOfPages(pages: pages)
+    }
+}
+
+// MARK: - GFPDFViewer protocol
+
+extension GFPDFScrollViewController : GFPDFViewer {
+    func resize(toFrame frame:CGRect) {
+        scrollView?.frame = frame
+        resizeViews()
     }
     
     func setNumberOfPagesOnScreen(_ pages:Int) {
