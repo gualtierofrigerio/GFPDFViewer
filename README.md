@@ -22,6 +22,8 @@ pod 'GFPDFViewer'
 
 Early version of the library not yet available through CocoaPods
 
+Please check my article about this project at http://www.gfrigerio.com/show-a-pdf/
+
 ## Author
 
 Gualtiero Frigerio, gualtiero.frigerio@gmail.com
