@@ -11,6 +11,7 @@
 		1B2E9AF1B6E731C3EEECE39BABDDF30E /* GFPDFCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4DC824C695C47C04E3E655DE43B71A /* GFPDFCommon.swift */; };
 		1E796B4E3F9C176CE60A664CE2B0B9E0 /* Pods-GFPDFViewer_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 400DEC3C26308C18119BA020AA7DB11B /* Pods-GFPDFViewer_Tests-dummy.m */; };
 		25696466225DF30A00D6F61F /* GFPDFScrollViewPageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25696465225DF30A00D6F61F /* GFPDFScrollViewPageHelper.swift */; };
+		25696468225F3A0800D6F61F /* GFPDFKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25696467225F3A0800D6F61F /* GFPDFKitViewController.swift */; };
 		27C180318EA656DD6C51D54013C9CAE0 /* Pods-GFPDFViewer_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 74CF0EA9A70399C426E039DCC3252D23 /* Pods-GFPDFViewer_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AE3F81B16CE2FDE5B2E38FFB50865D8 /* GFPDFScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C35CEC987195FD182C0C5D110E769 /* GFPDFScrollViewController.swift */; };
 		665A0BC36D1E6A9DD7AADA1BDA575A02 /* Pods-GFPDFViewer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7626469791FEFB8DA7C62B318F7590E2 /* Pods-GFPDFViewer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,6 +48,7 @@
 		117DC564F42C9A75DA9A7815B47FEA40 /* Pods-GFPDFViewer_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GFPDFViewer_Example.modulemap"; sourceTree = "<group>"; };
 		16ACEF9D68412B65B15A87A78E719DCA /* GFPDFViewer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GFPDFViewer-prefix.pch"; sourceTree = "<group>"; };
 		25696465225DF30A00D6F61F /* GFPDFScrollViewPageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GFPDFScrollViewPageHelper.swift; path = GFPDFViewer/Classes/GFPDFScrollViewPageHelper.swift; sourceTree = "<group>"; };
+		25696467225F3A0800D6F61F /* GFPDFKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GFPDFKitViewController.swift; path = GFPDFViewer/Classes/GFPDFKitViewController.swift; sourceTree = "<group>"; };
 		284ABADB193B6C8107C528E0B7376D04 /* Pods-GFPDFViewer_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GFPDFViewer_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2971A8B1E6E0019D9D662C77C4C642FD /* Pods-GFPDFViewer_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GFPDFViewer_Tests-resources.sh"; sourceTree = "<group>"; };
 		2D85ADB6B7D570FD4F8E8FDAB4F676CD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				8F4DC824C695C47C04E3E655DE43B71A /* GFPDFCommon.swift */,
 				C3445D5EAD9CDEEA954D7E38A06EDC4E /* GFPDFDocumentProvider.swift */,
+				25696467225F3A0800D6F61F /* GFPDFKitViewController.swift */,
 				EC7C35CEC987195FD182C0C5D110E769 /* GFPDFScrollViewController.swift */,
 				25696465225DF30A00D6F61F /* GFPDFScrollViewPageHelper.swift */,
 				52B3A00173C0A280BD2613CBFEA3B026 /* GFPDFTiledView.swift */,
@@ -368,6 +371,7 @@
 				3AE3F81B16CE2FDE5B2E38FFB50865D8 /* GFPDFScrollViewController.swift in Sources */,
 				25696466225DF30A00D6F61F /* GFPDFScrollViewPageHelper.swift in Sources */,
 				E3579B267D71395746B847EA3CA74172 /* GFPDFTiledView.swift in Sources */,
+				25696468225F3A0800D6F61F /* GFPDFKitViewController.swift in Sources */,
 				8FFCFA615046AA54034C2521B8B8A3D9 /* GFPDFViewController.swift in Sources */,
 				9D7D8F1D00F7B77625C10C5CF1AA7B0C /* GFPDFViewer-dummy.m in Sources */,
 			);

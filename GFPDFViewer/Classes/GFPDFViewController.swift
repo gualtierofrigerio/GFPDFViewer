@@ -16,6 +16,7 @@ public class GFPDFViewController: UIViewController {
     }
     private var pagesOnScreen = 1
     private var provider = GFPDFDocumentProvider()
+    private var pdfKitViewer:GFPDFViewer?
     private var pdfScrollViewController:GFPDFScrollViewController?
     private var pdfView:UIView?
     
@@ -37,6 +38,7 @@ public class GFPDFViewController: UIViewController {
         view.frame = frame
         setPagesPerScreen(forSize: frame.size)
         pdfScrollViewController?.resize(toFrame: frame)
+        pdfKitViewer?.resize(toFrame: frame)
         pdfView?.frame = frame
     }
     
@@ -54,22 +56,6 @@ public class GFPDFViewController: UIViewController {
 
 extension GFPDFViewController {
     
-    private func configurePDFView() {
-        if #available(iOS 11.0, *) {
-            guard let pdfView = self.pdfView as? PDFView else {return}
-            if pagesOnScreen == 1 {
-                pdfView.displayMode = .singlePageContinuous
-            }
-            else {
-                pdfView.displayMode = .twoUpContinuous
-            }
-            pdfView.contentMode = .scaleAspectFit
-            pdfView.maxScaleFactor = 4.0
-            pdfView.minScaleFactor = pdfView.scaleFactorForSizeToFit
-            pdfView.autoScales = true
-        }
-    }
-    
     private func configureScrollViewController() {
         if pdfScrollViewController == nil {
             pdfScrollViewController = GFPDFScrollViewController(configuration: configuration, dataSource: self, delegate: self)
@@ -81,27 +67,25 @@ extension GFPDFViewController {
     
     private func setPagesPerScreen(forSize size:CGSize) {
         if size.width > size.height && configuration.sideBySideLandscape {
-            pdfScrollViewController?.setNumberOfPagesOnScreen(2)
             pagesOnScreen = 2
         }
         else {
-            pdfScrollViewController?.setNumberOfPagesOnScreen(1)
             pagesOnScreen = 1
         }
-        configurePDFView()
+        pdfScrollViewController?.setNumberOfPagesOnScreen(pagesOnScreen)
+        pdfKitViewer?.setNumberOfPagesOnScreen(pagesOnScreen)
     }
     
     private func showPDFInPDFView(path:String) {
         if #available(iOS 11.0, *) {
             guard let pdfDocument = provider.getPDFDocument(atPath: path) else {return}
-            let pdfView = PDFView(frame: containerFrame)
-            pdfView.displayDirection = .horizontal
-            pdfView.displayMode = .twoUpContinuous
-            //pdfView.usePageViewController(true, withViewOptions: nil)
-            pdfView.document = pdfDocument
-            self.view.addSubview(pdfView)
-            self.pdfView = pdfView
-            configurePDFView()
+            let pdfKitViewer = GFPDFKitViewController(configuration: configuration)
+            pdfKitViewer.loadPDFDocument(document: pdfDocument)
+            pdfKitViewer.resize(toFrame: containerFrame)
+            addChild(pdfKitViewer)
+            self.view.addSubview(pdfKitViewer.view)
+            self.pdfKitViewer = pdfKitViewer
+            
         } else {
             print("not available in your iOS version")
         }
