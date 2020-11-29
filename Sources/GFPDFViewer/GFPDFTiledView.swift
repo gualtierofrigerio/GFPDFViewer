@@ -72,11 +72,7 @@ class GFPDFTiledView: UIView {
         ctx.restoreGState()
     }
     
-}
-
-// MARK: - Private
-
-extension GFPDFTiledView {
+    // MARK: - Private
     func getTranslationAndScale(forRect rect:CGRect, box:CGRect) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         let boxRatio = box.size.width / box.size.height;
         
@@ -103,3 +99,4 @@ extension GFPDFTiledView {
         return (xScale, yScale, xTranslate, yTranslate)
     }
 }
+

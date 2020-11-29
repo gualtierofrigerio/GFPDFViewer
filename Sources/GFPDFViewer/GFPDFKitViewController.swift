@@ -36,6 +36,19 @@ class GFPDFKitViewController: UIViewController {
         pdfView.document = document
     }
     
+    // MARK: - Private
+    private func configurePDFView() {
+        if configuration.scrollVertically {
+            pdfView.displayDirection = .vertical
+        }
+        else {
+            pdfView.displayDirection = .horizontal
+        }
+        pdfView.contentMode = .scaleAspectFit
+        pdfView.maxScaleFactor = 4.0
+        pdfView.minScaleFactor = pdfView.scaleFactorForSizeToFit
+        pdfView.autoScales = true
+    }
 }
 
 // MARK: - GFPDFViewer protocol
@@ -56,22 +69,4 @@ extension GFPDFKitViewController : GFPDFViewer {
     }
     
     
-}
-
-// MARK: - Private
-
-@available(iOS 11.0, *)
-extension GFPDFKitViewController {
-    private func configurePDFView() {
-        if configuration.scrollVertically {
-            pdfView.displayDirection = .vertical
-        }
-        else {
-            pdfView.displayDirection = .horizontal
-        }
-        pdfView.contentMode = .scaleAspectFit
-        pdfView.maxScaleFactor = 4.0
-        pdfView.minScaleFactor = pdfView.scaleFactorForSizeToFit
-        pdfView.autoScales = true
-    }
 }

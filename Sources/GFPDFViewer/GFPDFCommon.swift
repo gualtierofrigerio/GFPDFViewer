@@ -10,6 +10,7 @@ import UIKit
 
 typealias PDFPage = (page: Int, view: GFPDFTiledView)
 
+/// Struct used to pass parameters to the PDF View controller
 public struct GFPDFConfiguration {
     public var backgroundColor = UIColor.white // Scroll view background color
     public var fitPage = true // Fit the entire page on screen. Set false to scroll vertically and fill the page horizontally

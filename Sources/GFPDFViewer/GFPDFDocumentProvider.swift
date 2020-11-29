@@ -9,6 +9,9 @@ import Foundation
 import CoreGraphics
 import PDFKit
 
+/// Class responsible for handling a PDF document
+/// with utility function sto load a document, get the number of pages
+/// and return a particular page
 class GFPDFDocumentProvider {
     private var document:CGPDFDocument?
     

@@ -9,16 +9,7 @@ import PDFKit
 import UIKit
 
 public class GFPDFViewController: UIViewController {
-
     var configuration = GFPDFConfiguration()
-    private var containerFrame:CGRect {
-        return CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height)
-    }
-    private var pagesOnScreen = 1
-    private var provider = GFPDFDocumentProvider()
-    private var pdfKitViewer:GFPDFViewer?
-    private var pdfScrollViewController:GFPDFScrollViewController?
-    private var pdfView:UIView?
     
     public init(withConfiguration:GFPDFConfiguration) {
         super.init(nibName: nil, bundle: nil)
@@ -50,11 +41,17 @@ public class GFPDFViewController: UIViewController {
             showPDFInScrollView(path: path)
         }
     }
-}
-
-// MARK: - Private
-
-extension GFPDFViewController {
+    
+    // MARK: - Private
+    
+    private var containerFrame:CGRect {
+        return CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height)
+    }
+    private var pagesOnScreen = 1
+    private var provider = GFPDFDocumentProvider()
+    private var pdfKitViewer:GFPDFViewer?
+    private var pdfScrollViewController:GFPDFScrollViewController?
+    private var pdfView:UIView?
     
     private func configureScrollViewController() {
         if pdfScrollViewController == nil {
