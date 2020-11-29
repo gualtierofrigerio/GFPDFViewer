@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.3'
 
-  s.source_files = 'GFPDFViewer/Classes/**/*'
+  s.source_files = 'Sources/GFPDFViewer/*'
   
   # s.resource_bundles = {
   #   'GFPDFViewer' => ['GFPDFViewer/Assets/*.png']
