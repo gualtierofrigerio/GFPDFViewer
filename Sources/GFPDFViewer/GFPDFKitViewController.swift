@@ -8,12 +8,10 @@
 import PDFKit
 import UIKit
 
+/// View controller responsible for showing a PDFDocument
+/// by implementing PDFKit 
 @available(iOS 11.0, *)
 class GFPDFKitViewController: UIViewController {
-    
-    private var configuration = GFPDFConfiguration()
-    private var pdfView = PDFView()
-    
     init(configuration:GFPDFConfiguration) {
         super.init(nibName: nil, bundle: nil)
         self.configuration = configuration
@@ -25,18 +23,16 @@ class GFPDFKitViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
 
     func loadPDFDocument(document: PDFDocument) {
         pdfView.document = document
     }
     
     // MARK: - Private
+    
+    private var configuration = GFPDFConfiguration()
+    private var pdfView = PDFView()
+    
     private func configurePDFView() {
         if configuration.scrollVertically {
             pdfView.displayDirection = .vertical
@@ -67,6 +63,4 @@ extension GFPDFKitViewController : GFPDFViewer {
             pdfView.displayMode = .singlePageContinuous
         }
     }
-    
-    
 }

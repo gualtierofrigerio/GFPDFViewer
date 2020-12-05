@@ -13,10 +13,6 @@ class GFPDFTiledView: UIView {
         return CATiledLayer.self
     }
     
-    private var scale:CGFloat = 1.0
-    private var page:CGPDFPage?
-    private var currentFrame:CGRect!
-    
     init(withFrame frame: CGRect, scale:CGFloat) {
         super.init(frame: frame)
         
@@ -73,7 +69,12 @@ class GFPDFTiledView: UIView {
     }
     
     // MARK: - Private
-    func getTranslationAndScale(forRect rect:CGRect, box:CGRect) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
+    
+    private var scale:CGFloat = 1.0
+    private var page:CGPDFPage?
+    private var currentFrame:CGRect!
+    
+    private func getTranslationAndScale(forRect rect:CGRect, box:CGRect) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         let boxRatio = box.size.width / box.size.height;
         
         var xScale:CGFloat = 1.0

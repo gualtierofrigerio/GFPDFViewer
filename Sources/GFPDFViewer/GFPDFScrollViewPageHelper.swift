@@ -8,10 +8,6 @@
 import Foundation
 
 class GFPDFScrollViewPageHelper {
-    
-    var pagesOnScreen = 0
-    var totalNumberOfPages = 0
-    
     func getIndexesOfPages(onScreen: Int) -> [Int] {
         let startPageIndex = firstPageIndexOnScreen(onScreen)
         var pages = [Int]()
@@ -42,5 +38,7 @@ class GFPDFScrollViewPageHelper {
         totalNumberOfPages = pages
     }
     
-    
+    // MARK: - Private
+    private var pagesOnScreen = 0
+    private var totalNumberOfPages = 0
 }
