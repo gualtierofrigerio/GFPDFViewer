@@ -8,6 +8,8 @@
 import PDFKit
 import UIKit
 
+/// A ViewController responsible to show a PDF
+/// can be configured via GFPDFConfiguration
 public class GFPDFViewController: UIViewController {
     var configuration = GFPDFConfiguration()
     

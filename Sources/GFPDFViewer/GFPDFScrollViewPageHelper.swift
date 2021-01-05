@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Helper class used by GFPDFScrollViewController
+/// to store state information about the PDF currently loaded
 class GFPDFScrollViewPageHelper {
     func getIndexesOfPages(onScreen: Int) -> [Int] {
         let startPageIndex = firstPageIndexOnScreen(onScreen)

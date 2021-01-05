@@ -16,9 +16,13 @@ protocol GFPDFScrollViewDelegate {
     func userScrolledToPage(_ page:Int)
 }
 
-/// Class responsible for scrolling pages of a PDF document
+/// ViewController responsible for scrolling pages of a PDF document
+/// This VC is compatible with iOS prior to 11 so it is an alternative
+/// to PDFKit if you need to support older devices
 class GFPDFScrollViewController: UIViewController {
-    init(configuration:GFPDFConfiguration, dataSource:GFPDFScrollViewDataSource, delegate:GFPDFScrollViewDelegate?) {
+    init(configuration:GFPDFConfiguration,
+         dataSource:GFPDFScrollViewDataSource,
+         delegate:GFPDFScrollViewDelegate?) {
         super.init(nibName: nil, bundle: nil)
         self.configuration = configuration
         self.dataSource = dataSource

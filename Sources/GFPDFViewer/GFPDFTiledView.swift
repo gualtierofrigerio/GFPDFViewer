@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A View to display PDF pages with CATiledLayer
 class GFPDFTiledView: UIView {
     
     override class var layerClass: AnyClass {
