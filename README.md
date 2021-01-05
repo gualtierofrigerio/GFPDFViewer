@@ -31,3 +31,5 @@ Gualtiero Frigerio, gualtiero.frigerio@gmail.com
 ## License
 
 GFPDFViewer is available under the MIT license. See the LICENSE file for more info.
+
+Also available as SPM
